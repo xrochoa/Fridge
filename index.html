@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        body {
+            background-color: #16a085;
+        }
+        .navbar {
+            background-color: #333333;
+            border: 0px;
+            color: white;
+        }
+        img {
+            height: 4.2em;
+        }
+        #fridge > img {
+            height: 25em;
+            transform: rotate(180deg);
+        }
+        #fridge {
+            position: relative;
+        }
+        .jumbotron {
+            background-color: #1abc9c;
+        }
+        .message {
+            background-color: #16a085;
+        }
+        #item {
+            position: absolute;
+            top: 62%;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <nav class="navbar navbar-default text-center" role="navigation">
+    <h1>I want food!</h1>
+    </nav>
+
+
+
+
+    <div class="row">
+
+        <div class="container" ng-controller="myFridge">
+            <div class="col-lg-6">
+
+                <div class="jumbotron text-center">
+                    <div id="fridge">
+                        <div class="jumbotron message">
+                            <h2>{{time}}</h2>
+                        </div>
+
+                        <img src="res/open.png" ng-hide="showHide">
+                        <div id="item">
+                            <img src="res/orange.png" ng-show="newItem">
+                        </div>
+                        <img src="res/closed.png" ng-click="toggle()" ng-show="showHide">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="jumbotron text-center">
+                    <div class="jumbotron message">
+                        <h2>{{randomNumber | number:0}}</h2>
+                    </div>
+
+                    <div id="green">
+                        <img src="res/green.png">
+                    </div>
+                    <div id="purple">
+                        <img src="res/purple.png">
+                    </div>
+                    <div id="orange">
+                        <img src="res/orange.png">
+                    </div>
+                    <div id="red">
+                        <img src="res/red.png">
+                    </div>
+                    <div id="gold">
+                        <img src="res/gold.png">
+                    </div>
+                    <div id="blue">
+                        <img src="res/blue.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

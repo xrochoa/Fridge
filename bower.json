@@ -1,0 +1,19 @@
+{
+  "name": "Fridge",
+  "version": "0.0.0",
+  "authors": [
+    "Xavier Reyes Ochoa <xrochoa@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "angular": "~1.3.15"
+  }
+}
