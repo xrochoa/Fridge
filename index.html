@@ -38,13 +38,21 @@
             left: 0;
             width: 100%;
         }
+        .inline {
+            display: inline;
+        }
+        .circle {
+            border-radius: 50%;
+            width: 4.2em;
+            height: 4.2em;
+        }
     </style>
 </head>
 
 <body ng-app="myApp">
 
     <nav class="navbar navbar-default text-center" role="navigation">
-    <h1>I want food!</h1>
+        <h1>FridgeFringe</h1>
     </nav>
 
 
@@ -63,9 +71,9 @@
 
                         <img src="res/open.png" ng-hide="showHide">
                         <div id="item">
-                            <img src="res/orange.png" ng-show="newItem">
+                            <img ng-src="res/{{randomNumber | number:0}}.png" ng-show="newItem" ng-click="getItem()">
                         </div>
-                        <img src="res/closed.png" ng-click="toggle()" ng-show="showHide">
+                        <img src="res/closed.png" ng-click="open()" ng-show="showHide">
 
                     </div>
                 </div>
@@ -74,26 +82,18 @@
             <div class="col-lg-6">
                 <div class="jumbotron text-center">
                     <div class="jumbotron message">
-                        <h2>{{randomNumber | number:0}}</h2>
+                        <h2>{{randomNumber}}</h2>
                     </div>
+                    <div class="text-left" ng-repeat="(key, value) in myCollection">
+                        <div id="{{key}}">
+                            <div type="button" class="circle btn" style="background-color:{{value.color}}">
+                                <span class="badge">{{value.list.length}}</span>
+                            </div>
+                            <div class="inline" ng-repeat="myItem in value.list track by $index">
+                                <img ng-src="res/{{myItem}}.png">
+                            </div>
 
-                    <div id="green">
-                        <img src="res/green.png">
-                    </div>
-                    <div id="purple">
-                        <img src="res/purple.png">
-                    </div>
-                    <div id="orange">
-                        <img src="res/orange.png">
-                    </div>
-                    <div id="red">
-                        <img src="res/red.png">
-                    </div>
-                    <div id="gold">
-                        <img src="res/gold.png">
-                    </div>
-                    <div id="blue">
-                        <img src="res/blue.png">
+                        </div>
                     </div>
                 </div>
             </div>
