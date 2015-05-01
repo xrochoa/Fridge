@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script data-require="angular-animate@*" data-semver="1.2.0-rc2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.js"></script>
+
     <script src="app.js"></script>
     <style>
         body {
@@ -42,9 +44,28 @@
             display: inline;
         }
         .circle {
-            border-radius: 50%;
+            border-radius: 100%;
             width: 4.2em;
             height: 4.2em;
+        }
+        .hundred {
+            width: 100%;
+            padding: 0.5em;
+            border-radius: 10px;
+        }
+        .fadegreen {
+            -webkit-transition: opacity 2s;
+            /* For Safari 3.1 to 6.0 */
+            transition: opacity 2s;
+            opacity: 0;
+            color: #2ECC71;
+        }
+        .fadered {
+            -webkit-transition: opacity 2s;
+            /* For Safari 3.1 to 6.0 */
+            transition: opacity 2s;
+            opacity: 0;
+            color: #e74c3c;
         }
     </style>
 </head>
@@ -55,51 +76,39 @@
         <h1>FridgeFringe</h1>
     </nav>
 
-
-
-
     <div class="row">
-
         <div class="container" ng-controller="myFridge">
             <div class="col-lg-6">
-
                 <div class="jumbotron text-center">
                     <div id="fridge">
                         <div class="jumbotron message">
                             <h2>{{time}}</h2>
                         </div>
-
                         <img src="res/open.png" ng-hide="showHide">
                         <div id="item">
-                            <img ng-src="res/{{randomNumber | number:0}}.png" ng-show="newItem" ng-click="getItem()">
+                            <img ng-src="res/{{randomNumber}}.png" ng-show="newItem" ng-click="getItem()">
                         </div>
                         <img src="res/closed.png" ng-click="open()" ng-show="showHide">
-
                     </div>
                 </div>
-
             </div>
             <div class="col-lg-6">
                 <div class="jumbotron text-center">
                     <div class="jumbotron message">
-                        <h2>{{randomNumber}}</h2>
+                        <h2 ng-class="{fadered: startFade, fadegreen: pickFruit}">{{message}}</h2>
                     </div>
-                    <div class="text-left" ng-repeat="(key, value) in myCollection">
+                    <div class="text-left hundred" ng-repeat="(key, value) in myCollection" style="background-color:{{value.color}}">
                         <div id="{{key}}">
-                            <div type="button" class="circle btn" style="background-color:{{value.color}}">
-                                <span class="badge">{{value.list.length}}</span>
-                            </div>
+                            <span class="badge">{{value.list.length}} of {{value.count}}</span>
                             <div class="inline" ng-repeat="myItem in value.list track by $index">
                                 <img ng-src="res/{{myItem}}.png">
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
